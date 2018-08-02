@@ -13,6 +13,12 @@ namespace lvm {
 }
 
 /**
+ * A simple binding between Lua and C++ with an abstraction of the stack
+ * Please note that the abstraction is largely based and occasionally outright
+ * lifted from https://github.com/JakobOvrum/LuaCpp
+ */
+
+/**
  * \brief provides an abstraction to the lua stack.
  * 
  * This class returns Ref objects using the [] operator.
