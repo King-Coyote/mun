@@ -3,7 +3,7 @@
 #include "Ref.hpp"
 #include "StackOps.hpp"
 #include "Function.hpp"
-#include <iostream> //DELETEME
+#include <vector>
 
 namespace mun {
     class Table;
@@ -20,6 +20,11 @@ public:
      * \return The length of the table eg #table in lua
      */
     unsigned getLength();
+
+    /**
+     * \brief Returns a iterable vector of string keys in the lua table
+     */
+    std::vector<std::string> keys();
 
     template<typename R, typename T>
     R get(T key) const {

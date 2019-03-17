@@ -8,8 +8,8 @@
 #include "ClassBinding.hpp"
 #include <iostream>
 
-namespace lvm {
-    class LuaVM;
+namespace mun {
+    class State;
 }
 
 /**
@@ -23,10 +23,10 @@ namespace lvm {
  * 
  * This class returns Ref objects using the [] operator.
  */
-class lvm::LuaVM {
+class mun::State {
 public:
-    LuaVM();
-    virtual ~LuaVM();
+    State();
+    virtual ~State();
 
     /**
      * \brief opens the Lua libraries in prep for running scripts.
@@ -85,16 +85,6 @@ public:
         return t;
     }
 
-    /**
-     * Creates a reference from a file. The file should return the object
-     * you want to create. For example, the lua file:
-     * local button = {
-     *      width = 100,
-     *      height = 50 
-     * }
-     * return button
-     * will create a table from that object.
-     */
     template<typename R>
     R refFromFile(const std::string& filename) {
         R r;
