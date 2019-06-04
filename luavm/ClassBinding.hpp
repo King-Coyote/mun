@@ -19,7 +19,10 @@ public:
     template<int (T::*transFunc)(lua_State* L)>
     ClassBinding<T>& def(const char* methodName);
 
+    // push the ref to the stack, do this if not binding a global class after defs
     ClassBinding<T>& push();
+    // Get the ref object; useful for eg passing self to functions
+    mun::Ref getRef();
 
 private:
     /**
@@ -96,6 +99,11 @@ template<typename T>
 ClassBinding<T>& ClassBinding<T>::push() {
     this->ref.push();
     return *this;
+}
+
+template<typename T>
+mun::Ref ClassBinding<T>::getRef() {
+    return this->ref;
 }
 
 }

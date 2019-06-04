@@ -23,11 +23,12 @@ public:
 
     void push() const;
 
-    void setHandle(int handle);
+    int getHandle();
 
 protected:
 
     lua_State* L;
+
     int handle;
 
 private:

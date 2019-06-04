@@ -49,8 +49,8 @@ int Ref::copyHandle() const {
     return luaL_ref(this->L, LUA_REGISTRYINDEX);
 }
 
-void Ref::setHandle(int handle) {
-    this->handle = handle;
+int Ref::getHandle() {
+    return this->handle;
 }
 
 // CAST PARTIAL SPECIALIZATIONS

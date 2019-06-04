@@ -27,4 +27,17 @@ vector<string> Table::keys() {
     return keys;
 }
 
+vector<int> Table::indices() {
+    vector<int> indices = vector<int>();
+    this->push();
+    lua_pushnil(this->L);
+    int count = 1;
+    while(lua_next(this->L, -2)) {
+        indices.push_back(count++);
+        lua_pop(L, 1);
+    }
+    lua_pop(L, 1);
+    return indices;
+}
+
 }

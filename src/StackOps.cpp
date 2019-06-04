@@ -19,6 +19,10 @@ void pushValue(lua_State* L, const double val) {
     lua_pushnumber(L, val);
 }
 
+void pushValue(lua_State* L, const float val) {
+    lua_pushnumber(L, (double)val);
+}
+
 void pushValue(lua_State* L, const char* val) {
     lua_pushstring(L, val);
 }
@@ -57,6 +61,10 @@ void getValue(lua_State* L, int& val) {
 
 void getValue(lua_State* L, double& val) {
     val = lua_tonumber(L, -1);
+}
+
+void getValue(lua_State* L, float& val) {
+    val = (float)lua_tonumber(L, -1);
 }
 
 void getValue(lua_State* L, const char*& val) {

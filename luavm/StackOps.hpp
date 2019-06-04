@@ -23,6 +23,7 @@ namespace mun {
     void getValue(lua_State* L, mun::Function& val);
     void getValue(lua_State* L, int& val);
     void getValue(lua_State* L, double& val);
+    void getValue(lua_State* L, float& val);
     void getValue(lua_State* L, const char*& val);
     void getValue(lua_State* L, const string& val);
     void getValue(lua_State* L, bool& val);

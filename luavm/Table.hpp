@@ -26,11 +26,16 @@ public:
      */
     std::vector<std::string> keys();
 
+    /**
+     * \brief returns a vector of indices of the table
+     */
+    std::vector<int> indices();
+
     template<typename R, typename T>
     R get(T key) const {
         R r;
         this->push();
-        if (!lua_istable(this->L, 1)) {
+        if (!lua_istable(this->L, -1)) {
             lua_pop(this->L, -1);
             return r;
         }
@@ -43,21 +48,6 @@ public:
 
     template<typename R, typename T>
     R get(T key, const R&& valueIfNil) const {
-        //  R r;
-        // this->push();
-        // if (!lua_istable(this->L, -1)) {
-        //     lua_pop(this->L, -1);
-        //     return valueIfNil;
-        // }
-        // pushValue(this->L, key);
-        // lua_gettable(this->L, -2);
-        // if (lua_isnil(this->L, -1)) {
-        //     lua_pop(this->L, 2);
-        //     return valueIfNil
-        // }
-        // getValue(this->L, r);
-        // lua_pop(this->L, 2);
-        // return r;
         R r;
         this->push();
         if (!lua_istable(this->L, -1)) {
