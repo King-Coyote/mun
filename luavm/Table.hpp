@@ -31,6 +31,24 @@ public:
      */
     std::vector<int> indices();
 
+    /**
+     * \brief returns true if the table contains the key
+     */
+    template<typename T>
+    bool contains(T& key) {
+        this->push();
+        if (!lua_istable(this->L, -1)) {
+            lua_pop(this->L, -1);
+            return false;
+        }
+        pushValue(this->L, key);
+        lua_gettable(this->L, -2);
+        bool isInTable = false;
+        getValue(this->L, isInTable);
+        lua_pop(this->L, 2);
+        return isInTable;
+    }
+
     template<typename R, typename T>
     R get(T key) const {
         R r;
