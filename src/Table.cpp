@@ -40,4 +40,20 @@ vector<int> Table::indices() {
     return indices;
 }
 
+mun::Table& Table::createEmpty(lua_State* L) {
+    lua_newtable(L);
+    *this = mun::Table(L, -1);
+    lua_pop(L, 1);
+    return *this;
+}
+
+// void Table::push() {
+//     if (this->handle == LUA_REFNIL) {
+//         // the table does not exist; make a new one
+//         lua_newtable(this->L);
+//         *this = mun::Table(L, -1);
+//     }
+//     lua_rawgeti(this->L, LUA_REGISTRYINDEX, this->handle);
+// }
+
 }

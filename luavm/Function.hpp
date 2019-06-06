@@ -30,7 +30,7 @@ private:
         this->push();
         lua_insert(this->L, (numArgs+1)*-1); // insert after all the args
         if (lua_pcall(L, numArgs, 0, 0) != 0) {
-            //TODO what this do
+            //TODO what this do, error?
         }
     }
 

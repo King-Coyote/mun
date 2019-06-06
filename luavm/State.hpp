@@ -118,8 +118,7 @@ public:
         return r;
     }
 
-    //DELETEME
-    lua_State* getState() {return this->L;}
+    lua_State* const getStatePointer() {return this->L;}
 
 private:
     lua_State* L;

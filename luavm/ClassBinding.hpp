@@ -19,6 +19,9 @@ public:
     template<int (T::*transFunc)(lua_State* L)>
     ClassBinding<T>& def(const char* methodName);
 
+    template<typename R>
+    ClassBinding<T>& setValue(const char* name, const R& value);
+
     // push the ref to the stack, do this if not binding a global class after defs
     ClassBinding<T>& push();
     // Get the ref object; useful for eg passing self to functions
@@ -91,6 +94,16 @@ ClassBinding<T>& ClassBinding<T>::def(const char* methodName) {
     };
     lua_getglobal(this->L, this->name.c_str());
     luaL_setfuncs(this->L, transmutedFunc, 0);
+    lua_pop(this->L, 1);
+    return *this;
+}
+
+template<typename T>
+template<typename R>
+ClassBinding<T>&  ClassBinding<T>::setValue(const char* name, const R& value) {
+    lua_getglobal(this->L, this->name.c_str());
+    pushValue(this->L, value);
+    lua_setfield(this->L, -2, name);
     lua_pop(this->L, 1);
     return *this;
 }

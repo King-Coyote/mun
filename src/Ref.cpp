@@ -10,7 +10,7 @@ using namespace std;
 namespace mun {
 
 Ref::Ref() :
-    L(0),
+    L(nullptr),
     handle(LUA_NOREF)
 {}
 

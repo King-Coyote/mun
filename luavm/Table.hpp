@@ -15,6 +15,8 @@ public:
     Table(lua_State* L, int index = -1) : Ref(L, index) {}
     ~Table() {}
 
+    mun::Table& createEmpty(lua_State* L);
+
     /**
      * \brief Get the number of values in the table
      * \return The length of the table eg #table in lua
@@ -30,6 +32,22 @@ public:
      * \brief returns a vector of indices of the table
      */
     std::vector<int> indices();
+
+    /**
+     * \brief sets a key in the table to value
+     */
+    template<typename T>
+    bool set(const char* key, const T& value) {
+        this->push();
+        if (!lua_istable(this->L, -1)) {
+            lua_pop(this->L, -1);
+            return false;
+        }
+        pushValue(L, value);
+        lua_setfield(L, -2, key);
+        lua_pop(L, 1);
+        return true;
+    }
 
     /**
      * \brief returns true if the table contains the key
