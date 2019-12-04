@@ -1,0 +1,1 @@
+cp -r luavm /usr/include/ && cp build/src/libluavm.a /usr/lib/

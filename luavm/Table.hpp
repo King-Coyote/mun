@@ -15,6 +15,10 @@ public:
     Table(lua_State* L, int index = -1) : Ref(L, index) {}
     ~Table() {}
 
+    /**
+     * \brief Allows for the creation of an empty table if given a state pointer.
+     * Use it like: mun::Table t = mun::Table().createEmpty(state.getStatePointer());
+     */
     mun::Table& createEmpty(lua_State* L);
 
     /**
@@ -40,7 +44,7 @@ public:
     bool set(const char* key, const T& value) {
         this->push();
         if (!lua_istable(this->L, -1)) {
-            lua_pop(this->L, -1);
+            lua_pop(this->L, 1);
             return false;
         }
         pushValue(L, value);
@@ -53,10 +57,10 @@ public:
      * \brief returns true if the table contains the key
      */
     template<typename T>
-    bool contains(T& key) {
+    bool contains(T& key) const {
         this->push();
         if (!lua_istable(this->L, -1)) {
-            lua_pop(this->L, -1);
+            lua_pop(this->L, 1);
             return false;
         }
         pushValue(this->L, key);
@@ -72,7 +76,7 @@ public:
         R r;
         this->push();
         if (!lua_istable(this->L, -1)) {
-            lua_pop(this->L, -1);
+            lua_pop(this->L, 1);
             return r;
         }
         pushValue(this->L, key);
@@ -87,7 +91,7 @@ public:
         R r;
         this->push();
         if (!lua_istable(this->L, -1)) {
-            lua_pop(this->L, -1);
+            lua_pop(this->L, 1);
             return valueIfNil;
         }
         pushValue(this->L, key);
@@ -106,7 +110,7 @@ public:
         R r;
         this->push();
         if (!lua_istable(this->L, -1)) {
-            lua_pop(this->L, -1);
+            lua_pop(this->L, 1);
             r = R(valueIfNil);
             return r;
         }

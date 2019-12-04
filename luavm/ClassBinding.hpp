@@ -45,6 +45,7 @@ private:
             lua_getfield(L, 1, GLOBAL_UDATA_STR);
             //lua_remove(L, 1);
             ptr = *(T**)lua_touserdata(L, -1);
+            lua_pop(L,1);
         } else {
             printStack(L, "Literally no idea what this is, have a look");
         }
@@ -98,15 +99,15 @@ ClassBinding<T>& ClassBinding<T>::def(const char* methodName) {
     return *this;
 }
 
-template<typename T>
-template<typename R>
-ClassBinding<T>&  ClassBinding<T>::setValue(const char* name, const R& value) {
-    lua_getglobal(this->L, this->name.c_str());
-    pushValue(this->L, value);
-    lua_setfield(this->L, -2, name);
-    lua_pop(this->L, 1);
-    return *this;
-}
+// template<typename T>
+// template<typename R>
+// ClassBinding<T>&  ClassBinding<T>::setValue(const char* name, const R& value) {
+//     lua_getglobal(this->L, this->name.c_str());
+//     pushValue(this->L, value);
+//     lua_setfield(this->L, -2, name);
+//     lua_pop(this->L, 1);
+//     return *this;
+// }
 
 template<typename T>
 ClassBinding<T>& ClassBinding<T>::push() {

@@ -1,0 +1,24 @@
+cmake_minimum_required (VERSION 3.14.0)
+project(mun)
+
+set (CMAKE_CXX_STANDARD 11)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+set(luavm_dir ${CMAKE_CURRENT_SOURCE_DIR}/luavm)
+
+file(GLOB SRC src/*.cpp)
+
+add_subdirectory(src)
+
+add_executable(munTest main.cpp)
+
+target_include_directories(munTest
+    PUBLIC
+        luavm
+)
+
+target_link_libraries(munTest
+    luavm
+    lua
+)
