@@ -1,1 +1,1 @@
-cp -r luavm /usr/include/ && cp build/src/libluavm.a /usr/lib/
+cp -r mun /usr/include/ && cp build/src/libmun.a /usr/lib/
