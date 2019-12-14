@@ -1,6 +1,6 @@
 #include "catch.hpp"
-#include "mun/State.hpp"
-#include "mun/StackOps.hpp"
+#include "State.hpp"
+#include "StackOps.hpp"
 
 #include <memory>
 #include <iostream>

@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "mun/State.hpp"
+#include "State.hpp"
 
 #include <memory>
 #include <iostream>
