@@ -6,7 +6,6 @@
 #include "Table.hpp"
 #include "Function.hpp"
 #include "UserData.hpp"
-#include "DeducedType.hpp"
 
 using namespace std;
 
