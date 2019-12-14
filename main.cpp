@@ -103,17 +103,16 @@ public:
 int main(int argc, char** argv) {
 
     mun::State s = mun::State();
+    auto L = s.getStatePointer();
     s.openLibs();
 
     s.runString(R"(
-        local t = {
-            id = "duhhh"
-        }
+        local t = function(number)
+            return number + 1
+        end
         return t
     )");
-    mun::Table t(s.getStatePointer(), -1);
-    const char* kunt = t.get<const char*>("kunt", "shitcunt");
-    cout << kunt << endl;
-
-
+    mun::Function f(s.getStatePointer(), -1);
+    f(10);
+    int num = lua_tointeger(s.getStatePointer(), -1);
 }

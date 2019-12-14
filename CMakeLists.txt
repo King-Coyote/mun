@@ -5,7 +5,8 @@ set (CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-set(luavm_dir ${CMAKE_CURRENT_SOURCE_DIR}/luavm)
+set(mun_dir ${CMAKE_CURRENT_SOURCE_DIR}/mun)
+set(catch_dir /usr/include/catch2)
 
 file(GLOB SRC src/*.cpp)
 
@@ -15,10 +16,10 @@ add_executable(munTest main.cpp)
 
 target_include_directories(munTest
     PUBLIC
-        luavm
+        mun
 )
 
 target_link_libraries(munTest
-    luavm
+    mun
     lua
 )
