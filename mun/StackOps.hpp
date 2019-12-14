@@ -28,4 +28,5 @@ namespace mun {
     void getValue(lua_State* L, const string& val);
     void getValue(lua_State* L, bool& val);
     void printStack(lua_State* L, const char* msg);
+    int countStack(lua_State* L);
 }

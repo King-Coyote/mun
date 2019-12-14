@@ -106,4 +106,8 @@ void printStack(lua_State* L, const char* msg) {
   printf("dumpstack -- END\n");
 }
 
+int countStack(lua_State* L) {
+    return lua_gettop(L);
+}
+
 }

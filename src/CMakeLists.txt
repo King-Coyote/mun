@@ -14,7 +14,7 @@ target_link_libraries(mun
     lua
 )
 
-add_executable(tests ${TESTS})
+add_executable(tests ${TESTS} StackOps.cpp)
 
 target_include_directories(tests
     PUBLIC
