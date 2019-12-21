@@ -42,6 +42,14 @@ public:
         }
     }
 
+    template<typename... Args>
+    void operator()(
+        Args... args
+    ) {
+        ErrorCallback nullCallback = nullptr;
+        this->operator()(nullCallback, args...);
+    }
+
     template<typename R, typename... Args>
     R call(
         ErrorCallback& callback,
@@ -66,6 +74,14 @@ public:
         }
         getValue(L, r);
         return r;
+    }
+
+    template<typename R, typename... Args>
+    R call(
+        Args... args
+    ) {
+        ErrorCallback nullCallback = nullptr;
+        return this->call<R>(args...);
     }
 
 private:

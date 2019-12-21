@@ -40,6 +40,10 @@ SCENARIO("mun::Function works as expected", "[function]") {
                 int ret = func.call<int>(callback, 10);
                 CHECK(ret == 11);
             }
+
+            THEN("It correctly runs if a callback is NOT provided") {
+                CHECK_NOTHROW(func(0));
+            }
         }
 
         WHEN("An invalid function from a file is invoked") {
